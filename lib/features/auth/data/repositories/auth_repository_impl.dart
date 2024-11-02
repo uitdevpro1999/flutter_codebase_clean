@@ -5,14 +5,16 @@ import 'package:flutter_codebase_clean/features/auth/data/models/request/login_r
 import 'package:flutter_codebase_clean/features/auth/domain/entities/auth_entity.dart';
 import 'package:flutter_codebase_clean/features/auth/domain/repository/auth_repository.dart';
 import 'package:injectable/injectable.dart';
+
 @LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSources _src;
-  AuthRepositoryImpl(this._src,);
+  AuthRepositoryImpl(
+    this._src,
+  );
 
   @override
   Future<ApiResult<Auth>> login(LoginRequest request) {
-    // TODO: implement login
-    throw UnimplementedError();
+    return handleApiResponse(() => _src.login(request));
   }
 }
