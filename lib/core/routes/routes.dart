@@ -4,9 +4,11 @@ import 'package:flutter_codebase_clean/core/routes/app_routes.dart';
 import 'package:flutter_codebase_clean/core/routes/arguments/detailed_argument.dart';
 import 'package:flutter_codebase_clean/core/routes/routing_transitions.dart';
 import 'package:flutter_codebase_clean/features/auth/presentation/login/page/login_page.dart';
-import 'package:flutter_codebase_clean/features/main/presentation/pages/main_page.dart';
+import 'package:flutter_codebase_clean/features/main_application/main/presentation/pages/main_page.dart';
+import 'package:flutter_codebase_clean/features/profile/presentation/login/page/profile_page.dart';
 
 class Routes {
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final Object? arguments = settings.arguments;
     final appRoute = AppRoutes.fromPath(
@@ -23,6 +25,11 @@ class Routes {
         case AppRoutes.login:
           return RoutingTransitions.animRoute(
             const LoginPage(),
+            settings: settings,
+          );
+        case AppRoutes.profile:
+          return RoutingTransitions.animRoute(
+            const ProfilePage(),
             settings: settings,
           );
         default:

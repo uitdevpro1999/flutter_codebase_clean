@@ -31,4 +31,16 @@ class F {
         return '';
     }
   }
+  static String get graphQLUrl {
+    switch (appFlavor) {
+      case Flavor.prod:
+        return '';
+      case Flavor.dev:
+        return '';
+      case Flavor.uat:
+        return '';
+      default:
+        return '';
+    }
+  }
 }

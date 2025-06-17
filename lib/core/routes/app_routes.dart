@@ -8,8 +8,9 @@ enum AppRoutes {
 
   /// main
   main('main'),
+  /// main
+  profile('profile'),
   ;
-
   final String value;
 
   const AppRoutes(this.value);

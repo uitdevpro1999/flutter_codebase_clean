@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_codebase_clean/app.dart';
 import 'package:flutter_codebase_clean/core/localizations/localizations.dart';
 import 'package:flutter_codebase_clean/injection_container.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -15,6 +16,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 Future<void> start() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initHiveForFlutter();
   await configureDependencies();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage.call(_firebaseMessagingBackgroundHandler);

@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_codebase_clean/features/main/presentation/bloc/main_cubit.dart';
+import 'package:flutter_codebase_clean/features/main_application/main/presentation/bloc/main_cubit.dart';
 import 'package:flutter_codebase_clean/injection_container.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 class MainPage extends StatefulWidget {
@@ -42,10 +41,10 @@ class MainPageState extends State<MainPage> {
                 navBarHeight: 62.5,
                 tabs: _navBarsItems(),
                 navBarBuilder: (navBarConfig) => Style3BottomNavBar(
-                  navBarDecoration: NavBarDecoration(
-                    padding: EdgeInsets.only(bottom: 8.h),
-                    borderRadius: BorderRadius.only(topRight: Radius.circular(16.r), topLeft: Radius.circular(16.r)),
-                    boxShadow: const [
+                  navBarDecoration: const NavBarDecoration(
+                    padding: EdgeInsets.only(bottom: 8),
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+                    boxShadow: [
                       BoxShadow(
                         color: Color(0x0C000000),
                         blurRadius: 8,

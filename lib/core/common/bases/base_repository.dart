@@ -7,8 +7,9 @@ import 'package:flutter_codebase_clean/core/common/bases/model/base_response.dar
 import 'package:flutter_codebase_clean/core/constants/constants.dart';
 import 'package:flutter_codebase_clean/core/error/network_exceptions.dart';
 import 'package:flutter_codebase_clean/core/network/api/api_result.dart';
-import 'package:flutter_codebase_clean/features/app/presentation/bloc/app_cubit.dart';
+import 'package:flutter_codebase_clean/features/main_application/app/presentation/bloc/app_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http_parser/http_parser.dart';
 
@@ -62,6 +63,33 @@ abstract class BaseRepository {
       return ApiResult.success(data: response);
     } catch (e) {
       return _handleErrorApi(e);
+    }
+  }
+
+  Future<ApiResult<T>> handleGraphQLResponse<T>(
+    Future<QueryResult> Function() gqlCall,
+    T Function(Map<String, dynamic> data) fromJson, // dùng để convert kết quả
+  ) async {
+    try {
+      final result = await gqlCall();
+
+      if (result.hasException) {
+        final exception = result.exception!;
+        final message = exception.graphqlErrors.isNotEmpty
+            ? exception.graphqlErrors.map((e) => e.message).join(", ")
+            : exception.linkException?.toString() ?? "Unknown error";
+
+        return ApiResult.failure(error: message);
+      }
+
+      final data = result.data;
+      if (data == null) {
+        return ApiResult.failure(error: "Empty data response");
+      }
+
+      return ApiResult.success(data: fromJson(data));
+    } catch (e) {
+      return ApiResult.failure(error: e.toString());
     }
   }
 }
