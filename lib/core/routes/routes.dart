@@ -5,7 +5,7 @@ import 'package:flutter_codebase_clean/core/routes/arguments/detailed_argument.d
 import 'package:flutter_codebase_clean/core/routes/routing_transitions.dart';
 import 'package:flutter_codebase_clean/features/auth/presentation/login/page/login_page.dart';
 import 'package:flutter_codebase_clean/features/main_application/main/presentation/pages/main_page.dart';
-import 'package:flutter_codebase_clean/features/profile/presentation/login/page/profile_page.dart';
+import 'package:flutter_codebase_clean/features/profile/presentation/profile/page/profile_page.dart';
 
 class Routes {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
