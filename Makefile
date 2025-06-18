@@ -5,9 +5,9 @@ get-library:
 gen-asset:
 	fvm dart run build_runner build -d && fvm dart run easy_localization:generate -S ./assets/localizations -s vi.json -f keys -o locale_keys.gen.dart
 gen-localization:
-	fvm dart run easy_localization:generate -S ./assets/translations -s vi.json -f keys -o locale_keys.gen.dart
+	fvm dart run easy_localization:generate -S ./assets/localizations -s vi.json -f keys -o locale_keys.gen.dart
 watch-gen-asset:
-	fvm flutter pub run build_runner watch --delete-conflicting-outputs && fvm dart run easy_localization:generate -S ./assets/translations -s vi.json -f keys -o locale_keys.gen.dart
+	fvm flutter pub run build_runner watch --delete-conflicting-outputs && fvm dart run easy_localization:generate -S ./assets/localizations -s vi.json -f keys -o locale_keys.gen.dart
 debug-dev:
 	 fvm flutter run --flavor dev -t lib/main_dev.dart
 debug-prod:
